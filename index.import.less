@@ -31,10 +31,10 @@
   .navbar-toggle-variant(@collapsed: @EMPTY; @collapsed-hover: @EMPTY; @collapsed-click: @EMPTY; @collapsed-touch: @EMPTY;
                        @expanded: @EMPTY; @expanded-hover: @EMPTY; @expanded-click: @EMPTY; @expanded-touch: @EMPTY) {
     .navbar-toggle {
-      #mixin > .mouse-and-touch(@collapsed; @collapsed-hover; @collapsed-click; @collapsed-touch);
+      .mouse-and-touch(@collapsed; @collapsed-hover; @collapsed-click; @collapsed-touch);
 
       &:not(.collapsed) {
-        #mixin > .mouse-and-touch(@expanded; @expanded-hover; @expanded-click; @expanded-touch);
+        .mouse-and-touch(@expanded; @expanded-hover; @expanded-click; @expanded-touch);
       }
     }
   }
@@ -42,7 +42,7 @@
   .navbar-buttons-variant(@default: @EMPTY; @hover: @EMPTY; @click: @EMPTY; @touch: @EMPTY; @scrollspy: @EMPTY; @disabled: @EMPTY) {
     .navbar-nav {
       > li > a {
-        #mixin > .mouse-and-touch(@default; @hover; @click; @touch);
+        .mouse-and-touch(@default; @hover; @click; @touch);
       }
       .no-touch &, .touch & {
         > .active > a {
@@ -65,13 +65,13 @@
 
   .navbar-brand-variant(@default: @EMPTY; @hover: @EMPTY; @click: @EMPTY; @touch: @EMPTY) {
     .navbar-brand {
-      #mixin > .mouse-and-touch(@default; @hover; @click; @touch);
+      .mouse-and-touch(@default; @hover; @click; @touch);
     }
   }
 
   .navbar-link-variant(@default: @EMPTY; @hover: @EMPTY; @click: @EMPTY; @touch: @EMPTY) {
     .navbar-link {
-      #mixin > .mouse-and-touch(@default; @hover; @click; @touch);
+      .mouse-and-touch(@default; @hover; @click; @touch);
     }
   }
 
