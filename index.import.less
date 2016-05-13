@@ -1,0 +1,181 @@
+@import "{jcheroske:less-mouse-and-touch}/mouse-and-touch.import.less";
+
+#mixin {
+  .navbar-base-variant(@navbar: @EMPTY; @text: @EMPTY; @links: @EMPTY; @brand: @EMPTY; @nav: @EMPTY; @height: @navbar-height) {
+    min-height: @height;
+    @navbar();
+
+    .navbar-text {
+      line-height: @height;
+      @text();
+    }
+    .navbar-link {
+      line-height: @height;
+      @links();
+    }
+    .navbar-brand {
+      padding-top: 0;
+      padding-bottom: 0;
+      line-height: @height;
+      height: @height;
+  //    .xxs-only({
+  //      font-size: 16px;
+  //    });
+      @brand();
+    }
+    .navbar-nav {
+      @nav();
+    }
+  }
+
+  .navbar-toggle-variant(@collapsed: @EMPTY; @collapsed-hover: @EMPTY; @collapsed-click: @EMPTY; @collapsed-touch: @EMPTY;
+                       @expanded: @EMPTY; @expanded-hover: @EMPTY; @expanded-click: @EMPTY; @expanded-touch: @EMPTY) {
+    .navbar-toggle {
+      #mixin > .mouse-and-touch(@collapsed; @collapsed-hover; @collapsed-click; @collapsed-touch);
+
+      &:not(.collapsed) {
+        #mixin > .mouse-and-touch(@expanded; @expanded-hover; @expanded-click; @expanded-touch);
+      }
+    }
+  }
+
+  .navbar-buttons-variant(@default: @EMPTY; @hover: @EMPTY; @click: @EMPTY; @touch: @EMPTY; @scrollspy: @EMPTY; @disabled: @EMPTY) {
+    .navbar-nav {
+      > li > a {
+        #mixin > .mouse-and-touch(@default; @hover; @click; @touch);
+      }
+      .no-touch &, .touch & {
+        > .active > a {
+          &,
+          &:hover,
+          &:focus {
+            @scrollspy();
+          }
+        }
+      }
+      > .disabled > a {
+        &,
+        &:hover,
+        &:focus {
+          @disabled();
+        }
+      }
+    }
+  }
+
+  .navbar-brand-variant(@default: @EMPTY; @hover: @EMPTY; @click: @EMPTY; @touch: @EMPTY) {
+    .navbar-brand {
+      #mixin > .mouse-and-touch(@default; @hover; @click; @touch);
+    }
+  }
+
+  .navbar-link-variant(@default: @EMPTY; @hover: @EMPTY; @click: @EMPTY; @touch: @EMPTY) {
+    .navbar-link {
+      #mixin > .mouse-and-touch(@default; @hover; @click; @touch);
+    }
+  }
+
+  .navbar-dropdown-menu-variant(@menu: @EMPTY; @buttons: @EMPTY) {
+    @media (max-width: @screen-sm-min) {
+      .navbar-collapse {
+        @menu();
+
+        li a {
+          @buttons();
+        }
+      }
+    }
+  }
+
+  .panel-border-variant(@border: none; @border-radius: 0) {
+    border: @border;
+    border-radius: @border-radius;
+
+    & .panel-heading {
+      border-bottom: @border;
+      .border-top-radius(max(@border-radius - 1, 0));
+    }
+    & .panel-footer {
+      border-top: @border;
+      .border-bottom-radius(max(@border-radius - 1, 0));
+    }
+  }
+
+  .panel-variant(@panel: @EMPTY; @panel-heading: @EMPTY; @panel-body: @EMPTY; @panel-footer: @EMPTY) {
+    @panel();
+
+    > form {
+      width: 100%;
+    }
+    & .panel-heading {
+      @panel-heading();
+    }
+    & .panel-body {
+      @panel-body();
+    }
+    & .panel-footer {
+      @panel-footer();
+    }
+  }
+
+  .carousel-variant(@carousel: @EMPTY; @controls: @EMPTY; @indicators: @EMPTY; @items: @EMPTY; @images: @EMPTY; @captions: @EMPTY;) {
+    @carousel();
+
+    .item {
+      padding: 10px;
+      text-align: center;
+      @items();
+    }
+    .carousel-image {
+      @images();
+    }
+    .no-images {
+      left: 0;
+      position: absolute;
+      text-align: center;
+      top: 40%;
+      width: 100%;
+    }
+    .carousel-control {
+      background: none;
+      border: none;
+      opacity: initial;
+      top: 50px;
+      bottom: 50px;
+      width: 70px;
+      @controls();
+    }
+    .carousel-indicators {
+      margin: 0 auto;
+      width: auto;
+      position: static;
+      display: block;
+      @indicators();
+    }
+    .carousel-caption {
+      left: 20px;
+      right: 20px;
+      padding: 0;
+      @captions();
+    }
+    .carousel-delete {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+    .carousel-upload {
+      padding: 10px;
+      background-color: @transparent-black;
+
+      .upload-file {
+        display: inline-block;
+        float: left;
+        height: 30px;
+        outline: none;
+        max-width: 50%;
+        margin-right: 5px;
+      }
+    }
+  }
+
+}
